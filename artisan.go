@@ -74,13 +74,13 @@ func setterField(field reflect.StructField, value reflect.Value, indexCommandOpt
 			v, _ := strconv.Atoi(argValue)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
 		case fieldTypeInt64Ptr:
-			v, _ := strconv.ParseUint(argValue, 10, 64)
+			v, _ := strconv.ParseInt(argValue, 10, 64)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
 		case fieldTypeInt32Ptr:
-			v, _ := strconv.ParseUint(argValue, 10, 32)
+			v, _ := strconv.ParseInt(argValue, 10, 32)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
 		case fieldTypeUIntPtr:
-			v, _ := strconv.Atoi(argValue)
+			v, _ := strconv.ParseUint(argValue, 10, 64)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
 		case fieldTypeUInt64Ptr:
 			v, _ := strconv.ParseUint(argValue, 10, 64)
