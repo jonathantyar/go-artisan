@@ -65,33 +65,69 @@ func setterField(field reflect.StructField, value reflect.Value, indexCommandOpt
 
 	if value.FieldByIndex([]int{indexCommandOpt}).Kind() == reflect.Ptr {
 		switch field.Type.Field(indexCommandOpt).Type.String() {
-		case FieldTypeStringPtr:
+		case fieldTypeStringPtr:
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&argValue))
-		case FieldTypeBoolPtr:
+		case fieldTypeBoolPtr:
 			v, _ := strconv.ParseBool(argValue)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
-		case FieldTypeIntPtr:
-			v, _ := strconv.ParseInt(argValue, 10, 64)
+		case fieldTypeIntPtr:
+			v, _ := strconv.Atoi(argValue)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
-		case FieldTypeUIntPtr:
+		case fieldTypeInt64Ptr:
 			v, _ := strconv.ParseUint(argValue, 10, 64)
+			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
+		case fieldTypeInt32Ptr:
+			v, _ := strconv.ParseUint(argValue, 10, 32)
+			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
+		case fieldTypeUIntPtr:
+			v, _ := strconv.Atoi(argValue)
+			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
+		case fieldTypeUInt64Ptr:
+			v, _ := strconv.ParseUint(argValue, 10, 64)
+			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
+		case fieldTypeUInt32Ptr:
+			v, _ := strconv.ParseUint(argValue, 10, 32)
+			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
+		case fieldTypeFloat64Ptr:
+			v, _ := strconv.ParseFloat(argValue, 64)
+			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
+		case fieldTypeFloat32Ptr:
+			v, _ := strconv.ParseFloat(argValue, 32)
 			value.FieldByIndex([]int{indexCommandOpt}).Set(reflect.ValueOf(&v))
 		default:
 		}
 	}
 
 	switch field.Type.Field(indexCommandOpt).Type.String() {
-	case FieldTypeString:
+	case fieldTypeString:
 		value.FieldByIndex([]int{indexCommandOpt}).SetString(argValue)
-	case FieldTypeBool:
+	case fieldTypeBool:
 		v, _ := strconv.ParseBool(argValue)
 		value.FieldByIndex([]int{indexCommandOpt}).SetBool(v)
-	case FieldTypeInt:
+	case fieldTypeInt64:
 		v, _ := strconv.ParseInt(argValue, 10, 64)
 		value.FieldByIndex([]int{indexCommandOpt}).SetInt(v)
-	case FieldTypeUInt:
+	case fieldTypeInt32:
+		v, _ := strconv.ParseInt(argValue, 10, 32)
+		value.FieldByIndex([]int{indexCommandOpt}).SetInt(v)
+	case fieldTypeUInt64:
 		v, _ := strconv.ParseUint(argValue, 10, 64)
 		value.FieldByIndex([]int{indexCommandOpt}).SetUint(v)
+	case fieldTypeUInt32:
+		v, _ := strconv.ParseUint(argValue, 10, 32)
+		value.FieldByIndex([]int{indexCommandOpt}).SetUint(v)
+	case fieldTypeInt:
+		v, _ := strconv.ParseInt(argValue, 10, 64)
+		value.FieldByIndex([]int{indexCommandOpt}).SetInt(v)
+	case fieldTypeUInt:
+		v, _ := strconv.ParseUint(argValue, 10, 64)
+		value.FieldByIndex([]int{indexCommandOpt}).SetUint(v)
+	case fieldTypeFloat64:
+		v, _ := strconv.ParseFloat(argValue, 64)
+		value.FieldByIndex([]int{indexCommandOpt}).SetFloat(v)
+	case fieldTypeFloat32:
+		v, _ := strconv.ParseFloat(argValue, 32)
+		value.FieldByIndex([]int{indexCommandOpt}).SetFloat(v)
 	default:
 	}
 
