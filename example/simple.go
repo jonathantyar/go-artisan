@@ -8,7 +8,7 @@ import (
 )
 
 type PrintCommand struct {
-	Args    float32 `artisan:"type:arg,alias:word,default:yohoho"` //required argument : will turn error if not provided
+	Args    *int64  `artisan:"type:arg,alias:word,default:yohoho"` //required argument : will turn error if not provided
 	Args2   *string `artisan:"type:arg,alias:word_opt"`            //optional argument
 	Opt     string  `artisan:"type:opt,alias:test,hasValue"`       //required option : will turn error if not provided
 	OptBool bool    `artisan:"type:opt,alias:inline"`              //required option : will turn error if not provided
